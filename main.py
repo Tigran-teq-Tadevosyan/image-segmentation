@@ -1,7 +1,5 @@
 from PIL import Image
 
-Mu = 20 ## we define the intensity with the 'mu' so if we set it higher it will only pick drastic changes 
-
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 GREEN = (0,255,0)
@@ -25,42 +23,32 @@ def prcessImage( path = './sample-images/jpeg-home.jpeg', Mu = 20 ):
     width = im.size[0]
     height = im.size[1]
 
-    ## Running of the image and changing the color of out picture to show predicted edges
+    ## Running from top to bottom of the image and changing the color of out picture to show predicted edges
     for x in range(1,width-1):
         for y in range(1,height-1):
-            if (pix[x,y][0] - pix[x,y+1][0]) > Mu:
-                pix[x,y] = BLACK
-            elif pix[x,y][0] - pix[x,y+1][0] < -Mu:
+            if abs(pix[x,y][0] - pix[x,y+1][0]) > Mu:
                 pix[x,y] = GREEN
 
-            if pix[x,y][1] - pix[x,y+1][1] > Mu:
-                pix[x,y] = BLACK
-            elif pix[x,y][1] - pix[x,y+1][1] < -Mu:
+            if abs(pix[x,y][1] - pix[x,y+1][1]) > Mu:
                 pix[x,y] = GREEN
 
-            if pix[x,y][2] - pix[x,y+1][2] > Mu:
-                pix[x,y] = BLACK
-            elif pix[x,y][2] - pix[x,y+1][2] < -Mu:
+            if abs(pix[x,y][2] - pix[x,y+1][2]) > Mu:
                 pix[x,y] = GREEN
 
+    ## Running from left to right of the image and changing the color of out picture to show predicted edges
     for y in range(1,height-1):
         for x in range(1,width-1):
-            if pix[x,y][0] - pix[x+1,y][0] > Mu:
-                pix[x,y] = BLACK
-            elif pix[x,y][0] - pix[x+1,y][0] < -Mu:
+            if abs(pix[x,y][0] - pix[x+1,y][0]) > Mu:
                 pix[x,y] = GREEN
 
-            if pix[x,y][1] - pix[x+1,y][1] > Mu:
-                pix[x,y] = BLACK
-            elif pix[x,y][1] - pix[x+1,y][1] < -Mu:
+            if abs(pix[x,y][1] - pix[x+1,y][1]) > Mu:
                 pix[x,y] = GREEN
 
-            if pix[x,y][2] - pix[x+1,y][2] > Mu:
-                pix[x,y] = BLACK
-            elif pix[x,y][2] - pix[x+1,y][2] < -Mu:
+            if abs(pix[x,y][2] - pix[x+1,y][2]) > Mu:
                 pix[x,y] = GREEN
 
-    im.save('./result/result.jpg')  # Save the modified pixels as .png
+    ## Saving the image so it can be loaded from main window
+    im.save('./result/result.jpg')
 
 
 
