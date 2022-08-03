@@ -3,7 +3,7 @@
 ## Description
 This little program is predicting edges of objects in the images bassed on the (R,G,B) values change in the image.
 Right now it only works with 'jpg' images
-Program was tested on 'Ubuntu 16.04' with 'Python 3.6.5 |Anaconda, Inc.|'
+Program was tested on 'Ubuntu 16.04' with 'Python 3.6.5'
 
 ## Some Screenshots
 
